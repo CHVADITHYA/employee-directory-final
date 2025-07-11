@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Directory</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="header">
+    <h1>Employee Directory</h1>
+    <input type="text" id="searchInput" placeholder="Search by name or email" class="search-bar" />
+    <button id="toggleFilter" class="filter-button">Filter</button>
+  </header>
+
+  <main class="main">
+    <!-- Filters (initially hidden) -->
+    <div class="filters" id="filterPanel" style="display: none;">
+      <select id="filterDepartment" class="filter-select">
+        <option value="">All Departments</option>
+        <option value="Engineering">Engineering</option>
+        <option value="HR">HR</option>
+        <option value="Marketing">Marketing</option>
+      </select>
+
+      <select id="filterRole" class="filter-select">
+        <option value="">All Roles</option>
+        <option value="Manager">Manager</option>
+        <option value="Developer">Developer</option>
+        <option value="Designer">Designer</option>
+      </select>
+
+      <select id="sortBy" class="filter-select">
+        <option value="">Sort By</option>
+        <option value="firstName">First Name</option>
+        <option value="department">Department</option>
+      </select>
+    </div>
+
+    <div class="controls">
+      <div>
+        <label for="showCount">Show:</label>
+        <select id="showCount" class="filter-select-list">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10" selected>10</option>
+        </select>
+      </div>
+      <button id="addEmployeeBtn">Add Employee</button>
+    </div>
+
+    <!-- Employee List -->
+    <div id="employeeList" class="grid"></div>
+
+    <!-- Add Employee Form -->
+    <div id="popupForm" class="modal" style="display:none;">
+      <div class="modal-content"> <span class="close-btn" id="closePopup">&times;</span>
+        <h2>Add Employee</h2>
+        <form id="employeeForm" class="modal-form">
+          <input type="hidden" id="employeeId" />
+          <label>Email:</label><input type="email" id="email" required />
+          <label>First Name:</label><input type="text" id="firstName" required />
+          <label>Last Name:</label><input type="text" id="lastName" required />
+          <label>Department:</label>
+          <select id="department" required class="filter-select-list1">
+            <option value="">Select Department</option>
+            <option value="Engineering">Engineering</option>
+            <option value="HR">HR</option>
+            <option value="Marketing">Marketing</option>
+          </select>
+          <label>Role:</label>
+          <select id="role" required class="filter-select-list1">
+            <option value="">Select Role</option>
+            <option value="Manager">Manager</option>
+            <option value="Developer">Developer</option>
+            <option value="Designer">Designer</option>
+          </select>
+          <div class="modal-actions">
+            <button type="button" class="cancel-btn" id="cancelPopup">Cancel</button>
+            <button type="submit" class="submit-btn">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Employee Directory App. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
