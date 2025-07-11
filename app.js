@@ -18,6 +18,7 @@ let employees = [
 ];
 
 function renderEmployees() {
+  const limit = parseInt(document.getElementById('showCount').value || '10');
   const list = document.getElementById('employeeList');
   list.innerHTML = '';
 
@@ -37,13 +38,13 @@ function renderEmployees() {
   if (sortBy) {
     filtered.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
   }
-
-  for (let emp of filtered) {
+  for (let i = 0; i < Math.min(filtered.length, limit); i++) {
+    const emp = filtered[i];
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <p><strong>ID:</strong>${emp.id}</p>
-      <p><strong>Name:</strong>${emp.firstName} ${emp.lastName}</p>
+      <p><strong>ID:</strong> ${emp.id}</p>
+      <p><strong>Name:</strong> ${emp.firstName} ${emp.lastName}</p>
       <p><strong>Email:</strong> ${emp.email}</p>
       <p><strong>Department:</strong> ${emp.department}</p>
       <p><strong>Role:</strong> ${emp.role}</p>
@@ -53,6 +54,7 @@ function renderEmployees() {
     list.appendChild(card);
   }
 }
+
 
 function editEmployee(id) {
   const emp = employees.find(e => e.id === id);
