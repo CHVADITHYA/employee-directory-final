@@ -38,8 +38,8 @@ function renderEmployees() {
   if (sortBy) {
     filtered.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
   }
-  for (let i = 0; i < Math.min(filtered.length, limit); i++) {
-    const emp = filtered[i];
+
+  filtered.slice(0, limit).forEach(emp => {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
@@ -52,7 +52,8 @@ function renderEmployees() {
       <button onclick="deleteEmployee(${emp.id})">Delete</button>
     `;
     list.appendChild(card);
-  }
+  });
+  console.log(limit)
 }
 
 
@@ -99,6 +100,7 @@ document.getElementById('searchInput').addEventListener('input', renderEmployees
 document.getElementById('filterDepartment').addEventListener('change', renderEmployees);
 document.getElementById('filterRole').addEventListener('change', renderEmployees);
 document.getElementById('sortBy').addEventListener('change', renderEmployees);
+document.getElementById('showCount').addEventListener('change', renderEmployees);
 
 window.onload = renderEmployees();
 
@@ -123,4 +125,4 @@ document.getElementById('cancelPopup').addEventListener('click', () => {
 });
 
 
-document.getElementById('showCount').addEventListener('change', renderEmployees);
+
